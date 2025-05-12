@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>foodiexpress</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/resources/HTML/login.html</name>
+			<type>1</type>
+			<location>C:/Users/2400093/OneDrive - Cognizant/Desktop/Food Delivery System/login.html</location>
+		</link>
+		<link>
+			<name>src/main/resources/HTML/multiSignUp.html</name>
+			<type>1</type>
+			<location>C:/Users/2400093/OneDrive - Cognizant/Desktop/Food Delivery System/multiSignUp.html</location>
+		</link>
+		<link>
+			<name>src/main/resources/HTML/userNavBar.html</name>
+			<type>1</type>
+			<location>C:/Users/2400093/OneDrive - Cognizant/Desktop/Food Delivery System/userNavBar.html</location>
+		</link>
+		<link>
+			<name>src/main/resources/HTML/userProfile.html</name>
+			<type>1</type>
+			<location>C:/Users/2400093/OneDrive - Cognizant/Desktop/Food Delivery System/userProfile.html</location>
+		</link>
+	</linkedResources>
+</projectDescription>
