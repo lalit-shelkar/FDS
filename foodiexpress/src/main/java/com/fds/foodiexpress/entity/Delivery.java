@@ -35,6 +35,12 @@ public class Delivery {
 	
 	@Column(name="adharcard")
 	private String adharcard;
+	
+	@Column(name="address")
+	private String address;
+	
+	@Column(name="flag")
+	private String flag;
 
 	public int getAgentid() {
 		return agentid;
@@ -107,6 +113,62 @@ public class Delivery {
 	public void setVehicle(String vehicle) {
 		this.vehicle = vehicle;
 	}
+	
+	
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	
+
+	
+
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
+	
+
+	
+	
+	public Delivery(String name, String email, String phone, String altPhone, String password, String dob,
+			String vehicle, String adharcard, String address, String flag) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.altPhone = altPhone;
+		this.password = password;
+		this.dob = dob;
+		this.vehicle = vehicle;
+		this.adharcard = adharcard;
+		this.address = address;
+		this.flag = flag;
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "Delivery [agentid=" + agentid + ", name=" + name + ", email=" + email + ", phone=" + phone
+				+ ", altPhone=" + altPhone + ", password=" + password + ", dob=" + dob + ", vehicle=" + vehicle
+				+ ", adharcard=" + adharcard + ", address=" + address + ", flag=" + flag + "]";
+	}
+
+	public Delivery() {
+		
+	}
+	
+	
 	
 	
 }

@@ -89,34 +89,44 @@ body {
 				</select>
 
 				<!-- Restaurant Signup Form -->
+			<form th:action="@{/restaurantRegister}" method="post" th:object="${restro}">
 				<div id="restaurantForm" style="display: none;">
 					<h4 class="fw-bold mt-3">Restaurant Information</h4>
-					<input type="text" class="form-control mb-3"
-						placeholder="Restaurant Name" required> <input type="text"
+					<input type="text" th:field="*{rName}" class="form-control mb-3"
+						placeholder="Restaurant Name" required>
+						 <input type="text" th:field="*{address}"
 						class="form-control mb-3" placeholder="Restaurant Address"
-						required> <input type="text" class="form-control mb-3"
-						placeholder="City" required> <input type="tel"
+						required>
+						 <input type="text" th:field="*{city}" class="form-control mb-3"
+						placeholder="City" required>
+						 <input type="tel" th:field="*{rPhone}"
 						class="form-control mb-3" placeholder="Restaurant Phone Number"
-						required> <input type="text" class="form-control mb-3"
+						required>
+						 <input type="text" th:field="*{gstId}" class="form-control mb-3"
 						placeholder="GST ID" required>
 
 					<h4 class="fw-bold mt-3">Owner Details</h4>
-					<input type="text" class="form-control mb-3"
-						placeholder="Owner Name" required> <input type="email"
+					<input type="text" th:field="*{oName}" class="form-control mb-3"
+						placeholder="Owner Name" required>
+						 <input type="email" th:field="*{oEmail}"
 						class="form-control mb-3" placeholder="Owner Email ID" required>
-					<input type="tel" class="form-control mb-3"
-						placeholder="Owner Phone Number 1" required> <input
+					<input type="tel" th:field="*{oPhone}" class="form-control mb-3"
+						placeholder="Owner Phone Number 1" required>
+						 <input th:field="*{oAltPhone}"
 						type="tel" class="form-control mb-3"
-						placeholder="Owner Phone Number 2" required> <input
+						placeholder="Owner Phone Number 2" required> 
+						<input th:field="*{password}"
 						type="password" class="form-control mb-3" placeholder="Password"
-						required> <input type="password" class="form-control mb-3"
-						placeholder="Confirm Password" required>
-
+						required>
 					<h4 class="fw-bold mt-3">Operational Hours & Holidays</h4>
-					<label>From:</label> <input type="time" class="form-control mb-3"
-						required> <label>To:</label> <input type="time"
-						class="form-control mb-3" required> <label>Restaurant
-						Holiday:</label> <select class="form-select mb-3">
+					<label>From:</label> 
+					<input type="time" th:field="*{oTime}" class="form-control mb-3"
+						required> <label>To:</label> 
+						<input type="time" th:field="*{cTime}"
+						class="form-control mb-3" required> 
+					<label>Restaurant
+						Holiday:</label>
+					<select class="form-select mb-3" th:field="*{holiday}">
 						<option value="Monday">Monday</option>
 						<option value="Tuesday">Tuesday</option>
 						<option value="Wednesday">Wednesday</option>
@@ -124,33 +134,38 @@ body {
 						<option value="Friday">Friday</option>
 						<option value="Saturday">Saturday</option>
 						<option value="Sunday">Sunday</option>
-						<!-- Submit Button -->
+					</select>
+					<!-- Submit Button -->
 						<div class="d-grid mt-4">
 							<button type="submit" class="btn btn-black">Sign Up</button>
 						</div>
-
-					</select>
+					</form>
 				</div>
 
 				<!-- Delivery Boy Signup Form -->
-				<form th:action="@{/deliveryRegister}" method="post" th:object="${ctm}">
+				<form th:action="@{/deliveryRegister}" method="post" th:object="${dvr}">
 				<div id="deliveryForm" style="display: none;">
 					<h4 class="fw-bold mt-3">Delivery Boy Information</h4>
 					<input type="text" class="form-control mb-3"
-						placeholder="Full Name" required> <input type="email"
-						class="form-control mb-3" placeholder="Email" required> <input
-						type="password" class="form-control mb-3" placeholder="Password"
-						required> <input type="password" class="form-control mb-3"
-						placeholder="Confirm Password" required> <input type="tel"
-						class="form-control mb-3" placeholder="Phone Number 1" required>
-					<input type="tel" class="form-control mb-3"
-						placeholder="Phone Number 2" required> <input type="text"
+						placeholder="Full Name" th:field="*{name}" required>
+					 <input type="email"
+						class="form-control mb-3" th:field="*{email}" placeholder="Email" required>
+					 <input
+						type="password" th:field="*{password}" class="form-control mb-3" placeholder="Password"
+						required>
+					 <input type="tel"
+						class="form-control mb-3" th:field="*{phone}" placeholder="Phone Number 1" required>
+					<input type="tel" th:field="*{altPhone}" class="form-control mb-3"
+						placeholder="Phone Number 2" required>
+					 <input type="text" th:field="*{address}"
 						class="form-control mb-3" placeholder="Address" required>
-					<label>Date of Birth:</label> <input type="date"
-						class="form-control mb-3" required> <input type="text"
+					<label>Date of Birth:</label> 
+					<input type="date" th:field="*{dob}"
+						class="form-control mb-3" required> 
+					<input type="text" th:field="*{vehicle}"
 						class="form-control mb-3" placeholder="Vehicle Number" required>
 					<input type="text" class="form-control mb-3"
-						placeholder="Aadhar Card Number" required>
+					  th:field="*{adharcard}"	placeholder="Aadhar Card Number" required>
 					<!-- Submit Button -->
 					<div class="d-grid mt-4">
 						<button type="submit" class="btn btn-black">Sign Up</button>
