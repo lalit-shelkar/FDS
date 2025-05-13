@@ -1,4 +1,4 @@
-package com.fds.foodiexpress.mvcDeliveryEntity;
+package com.fds.foodiexpress.entity;
 
 import jakarta.persistence.*;
 import jakarta.persistence.Table;

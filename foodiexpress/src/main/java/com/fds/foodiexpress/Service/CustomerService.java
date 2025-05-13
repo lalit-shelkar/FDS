@@ -1,8 +1,8 @@
-package com.fds.foodiexpress.userService;
+package com.fds.foodiexpress.Service;
 
 import com.fds.foodiexpress.entity.Customer;
 
-public interface UserService {
+public interface CustomerService {
 
 	void register(Customer customer);
 }

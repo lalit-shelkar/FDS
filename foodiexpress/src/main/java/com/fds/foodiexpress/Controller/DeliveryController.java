@@ -1,9 +1,9 @@
-package com.fds.foodiexpress.mvc;import org.springframework.stereotype.Controller;
+package com.fds.foodiexpress.Controller;import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.fds.foodiexpress.mvc.DeliveryService.DeliveryServiceDAO;
-import com.fds.foodiexpress.mvc.DeliveryService.DeliveryServiceDaoImpl;
-import com.fds.foodiexpress.mvcDeliveryEntity.Delivery;
+import com.fds.foodiexpress.Service.DeliveryServiceDAO;
+import com.fds.foodiexpress.Service.DeliveryServiceDaoImpl;
+import com.fds.foodiexpress.entity.Delivery;
 
 
 @Controller
@@ -42,8 +42,6 @@ public class DeliveryController {
 
     @GetMapping("/profile")
     public String showProfile() {
-    	Delivery d=new Delivery("hsdgs");
-    	dsdao.change(d);
         return "Delivery/profile"; // Must match profile.html inside /templates/Delivery/
         
     }

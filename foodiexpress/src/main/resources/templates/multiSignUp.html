@@ -133,6 +133,7 @@ body {
 				</div>
 
 				<!-- Delivery Boy Signup Form -->
+				<form th:action="@{/deliveryRegister}" method="post" th:object="${ctm}">
 				<div id="deliveryForm" style="display: none;">
 					<h4 class="fw-bold mt-3">Delivery Boy Information</h4>
 					<input type="text" class="form-control mb-3"
@@ -155,9 +156,10 @@ body {
 						<button type="submit" class="btn btn-black">Sign Up</button>
 					</div>
 				</div>
+				</form>
 
 				<!-- Customer Signup Form -->
-				<form th:action="@{/userRegister}" method="post" th:object="${ctm}">
+				<form th:action="@{/customerRegister}" method="post" th:object="${ctm}">
 					<div id="customerForm">
 						<h4 class="fw-bold mt-3">Customer Information</h4>
 						<input type="text" class="form-control mb-3" th:field="*{name}"

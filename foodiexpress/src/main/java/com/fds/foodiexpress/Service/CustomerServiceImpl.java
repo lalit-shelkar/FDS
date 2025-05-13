@@ -1,15 +1,15 @@
-package com.fds.foodiexpress.userService;
+package com.fds.foodiexpress.Service;
 
 import org.springframework.stereotype.Service;
 
-import com.fds.foodiexpress.customerdao.CustomerDao;
+import com.fds.foodiexpress.dao.CustomerDao;
 import com.fds.foodiexpress.entity.Customer;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class CustomerServiceImpl implements CustomerService {
 	
 	CustomerDao customerDao;
-	public UserServiceImpl(CustomerDao customerDao) {
+	public CustomerServiceImpl(CustomerDao customerDao) {
 		this.customerDao=customerDao;
 	}
 	

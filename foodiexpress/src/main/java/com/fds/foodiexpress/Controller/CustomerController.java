@@ -1,4 +1,4 @@
-package com.fds.foodiexpress.userController;
+package com.fds.foodiexpress.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.fds.foodiexpress.Service.CustomerService;
 import com.fds.foodiexpress.entity.Customer;
-import com.fds.foodiexpress.userService.UserService;
 
 @Controller
-public class UserController {
+public class CustomerController {
 	
-	UserService userService;
-	public UserController(UserService userService) {
+	CustomerService userService;
+	public CustomerController(CustomerService userService) {
 		this.userService=userService;
 	}
 	
