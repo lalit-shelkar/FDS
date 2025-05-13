@@ -1,9 +1,9 @@
-package com.fds.foodiexpress.mvc.DeliveryService;
+package com.fds.foodiexpress.Service;
 
 import org.springframework.stereotype.Service;
 
-import com.fds.foodiexpress.mvc.deliveryDAO.DeliveryDAO;
-import com.fds.foodiexpress.mvcDeliveryEntity.Delivery;
+import com.fds.foodiexpress.dao.DeliveryDAO;
+import com.fds.foodiexpress.entity.Delivery;
 
 @Service
 public class DeliveryServiceDaoImpl implements DeliveryServiceDAO{

@@ -1,8 +1,8 @@
-package com.fds.foodiexpress.mvc.deliveryDAO;
+package com.fds.foodiexpress.dao;
 
 import org.springframework.stereotype.Repository;
 
-import com.fds.foodiexpress.mvcDeliveryEntity.Delivery;
+import com.fds.foodiexpress.entity.Delivery;
 
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;

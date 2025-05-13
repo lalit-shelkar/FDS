@@ -1,4 +1,4 @@
-package com.fds.foodiexpress.customerdao;
+package com.fds.foodiexpress.dao;
 
 import org.springframework.stereotype.Repository;
 
