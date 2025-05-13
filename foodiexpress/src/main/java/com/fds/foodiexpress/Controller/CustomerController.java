@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.fds.foodiexpress.Service.CustomerService;
 import com.fds.foodiexpress.entity.Customer;
+import com.fds.foodiexpress.entity.Delivery;
+import com.fds.foodiexpress.entity.Restaurant;
 
 @Controller
 public class CustomerController {
@@ -20,7 +22,11 @@ public class CustomerController {
 	@GetMapping("/showRegister")
 	public String showRegister(Model model) {
 		Customer customer=new Customer();
+		Delivery delivery=new Delivery();
+		Restaurant restaurant=new Restaurant();
 		model.addAttribute("ctm",customer);
+		model.addAttribute("dvr",delivery);
+		model.addAttribute("restro", restaurant);
 		return "multiSignUp";
 	}
 
@@ -31,4 +37,23 @@ public class CustomerController {
 		System.out.println("Done!");
 		return "login";
 	}
+	
+	@PostMapping("/deliveryRegister")
+	public String deliveryRegister(@ModelAttribute("dvr") Delivery delivery) {
+		delivery.setFlag("1");
+		System.out.println(delivery);
+		userService.registerDelivery(delivery);
+		System.out.println("Done!");
+		return "login";
+	}
+	
+	@PostMapping("/restaurantRegister")
+	public String restaurantRegister(@ModelAttribute("restro") Restaurant restaurant) {
+		restaurant.setFlag("1");
+		System.out.println(restaurant);
+		userService.registerRestaurant(restaurant);
+		System.out.println("Done!");
+		return "login";
+	}
+	
 }
