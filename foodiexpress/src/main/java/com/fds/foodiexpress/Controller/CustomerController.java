@@ -1,5 +1,7 @@
 package com.fds.foodiexpress.Controller;
 
+
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,19 @@ public class CustomerController {
 		this.userService=userService;
 	}
 	
+	@GetMapping("/dashboard")
+	public String afterLogin() {
+		return "customer/userNavBar";
+	}
+	
+	@GetMapping("/showLogin")
+	public String showLogin(Authentication authentication) {
+		if(authentication != null && authentication.isAuthenticated()) {
+			return "redirect:/dashboard";
+		}
+		return "login";
+	}
+	
 	@GetMapping("/showRegister")
 	public String showRegister(Model model) {
 		Customer customer=new Customer();
@@ -30,12 +45,12 @@ public class CustomerController {
 		return "multiSignUp";
 	}
 
-	@PostMapping("/userRegister")
+	@PostMapping("/customerRegister")
 	public String userRegister(@ModelAttribute("ctm") Customer customer) {
 		System.out.println(customer);
 		userService.register(customer);
 		System.out.println("Done!");
-		return "login";
+		return "redirect:/showLogin";
 	}
 	
 	@PostMapping("/deliveryRegister")
