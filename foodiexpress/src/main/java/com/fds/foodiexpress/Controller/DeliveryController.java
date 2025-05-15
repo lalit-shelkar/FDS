@@ -14,11 +14,11 @@ public class DeliveryController {
 		this.dsdao=dsdao;
 	}
 	
-    @GetMapping("/")
-    public String showDashboard() {
-        return "Delivery/index"; // Must match index.html inside /templates/Delivery/
-        
-    }
+
+   @GetMapping("/delivery-dashboard")
+   public String showDashboard() {
+	   return "Delivery/index";
+   }
     
     @GetMapping("/index")
     public String showIndex() {

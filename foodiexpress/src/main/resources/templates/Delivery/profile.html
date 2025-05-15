@@ -97,7 +97,10 @@
         <p><strong>Phone:</strong> +91 9876543210</p>
         <p><strong>Date of Birth:</strong> 01 Jan 1995</p>
         <p><strong>Gender:</strong> Male</p>
-        <button class="btn-logout" onclick="logout()">Logout</button>
+        <form th:action="@{/logout}" method="post">
+        	<button class="btn-logout" type="submit" >Logout</button>
+        </form>
+        
     </div>
 
     <hr class="w-50 my-4">

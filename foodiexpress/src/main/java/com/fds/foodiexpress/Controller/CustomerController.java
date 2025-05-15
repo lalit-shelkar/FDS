@@ -1,7 +1,10 @@
 package com.fds.foodiexpress.Controller;
 
 
+import java.util.Collection;
+
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,11 +29,65 @@ public class CustomerController {
 		return "customer/userNavBar";
 	}
 	
+	@GetMapping("/goto")
+	public String gotoDash(Authentication authentication) {
+		if (authentication != null && authentication.isAuthenticated()) {
+		    String username = authentication.getName();
+		    String role = authentication.getAuthorities().stream()
+		                                .map(GrantedAuthority::getAuthority)
+		                                .findFirst()
+		                                .orElse("ROLE_DEFAULT"); // Default role if none found
+
+		    System.out.println("Username: " + username);
+		    System.out.println("Role: " + role);
+
+		    switch (role) {
+		        case "ROLE_CUSTOMER":
+		            System.out.println("Redirecting to Admin Dashboard...");
+		            return "redirect:/dashboard";
+		        case "ROLE_RESTAURANT":
+		            System.out.println("Redirecting to Restro Dashboard...");
+		            return "redirect:/restro-dashboard";
+		        case "ROLE_DELIVERY":
+		            System.out.println("Redirecting to Moderator Panel...");
+		            return "redirect:/delivery-dashboard";
+		        default:
+		            System.out.println("Redirecting to Default Dashboard...");
+		            return "redirect:/login";
+		    }
+		}
+		return "login";
+	}
+	
 	@GetMapping("/showLogin")
 	public String showLogin(Authentication authentication) {
-		if(authentication != null && authentication.isAuthenticated()) {
-			return "redirect:/dashboard";
-		}
+		if (authentication != null && authentication.isAuthenticated()) {
+//		    String username = authentication.getName();
+//		    String role = authentication.getAuthorities().stream()
+//		                                .map(GrantedAuthority::getAuthority)
+//		                                .findFirst()
+//		                                .orElse("ROLE_DEFAULT"); // Default role if none found
+//
+//		    System.out.println("Username: " + username);
+//		    System.out.println("Role: " + role);
+//
+//		    switch (role) {
+//		        case "ROLE_CUSTOMER":
+//		            System.out.println("Redirecting to Admin Dashboard...");
+//		            return "redirect:/dashboard";
+//		        case "ROLE_RESTAURANT":
+//		            System.out.println("Redirecting to Restro Dashboard...");
+//		            return "redirect:/restro-dashboard";
+//		        case "ROLE_DELIVERY":
+//		            System.out.println("Redirecting to Moderator Panel...");
+//		            return "redirect:/delivery-dashboard";
+//		        default:
+//		            System.out.println("Redirecting to Default Dashboard...");
+		            return "redirect:/login";
+		    }
+		
+
+		
 		return "login";
 	}
 	
