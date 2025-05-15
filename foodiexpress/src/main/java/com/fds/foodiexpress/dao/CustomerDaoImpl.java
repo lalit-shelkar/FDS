@@ -43,12 +43,38 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public void addDelivery(Delivery delivery) {
+		Users user = new Users();
+		Authorities authorities = new Authorities();
+		
+		delivery.setPassword(passwordEncoder.encode(delivery.getPassword()));
+		user.setUsername(delivery.getEmail());
+		user.setPassword(delivery.getPassword());
+		user.setEnabled("1");
+		
+		authorities.setAuthority("ROLE_DELIVERY");
+		authorities.setUsername(delivery.getEmail());
+		
+		entityManager.persist(user);
+		entityManager.persist(authorities);
 		entityManager.persist(delivery);
 			
 	}
 
 	@Override
 	public void addRestaurant(Restaurant restaurant) {
+		Users user = new Users();
+		Authorities authorities = new Authorities();
+		
+		restaurant.setPassword(passwordEncoder.encode(restaurant.getPassword()));
+		user.setUsername(restaurant.getoEmail());
+		user.setPassword(restaurant.getPassword());
+		user.setEnabled("1");
+		
+		authorities.setAuthority("ROLE_RESTAURANT");
+		authorities.setUsername(restaurant.getoEmail());
+		
+		entityManager.persist(user);
+		entityManager.persist(authorities);
 		entityManager.persist(restaurant);
 		
 	}

@@ -44,12 +44,17 @@ public class SecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 	
+	
+	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/showRegister","/customerRegister","/showLogin").anonymous()
+                .requestMatchers("/showRegister","/customerRegister","/showLogin","/restaurantRegister","/deliveryRegister").anonymous()
+                .requestMatchers("/dashboard").hasRole("CUSTOMER")
+                .requestMatchers("/restro-dashboard").hasRole("RESTAURANT")
+                .requestMatchers("/delivery-dashboard").hasRole("DELIVERY")
 //                .requestMatchers("/admin/**").hasRole("ADMIN")
 //                .requestMatchers("/user/**").hasRole("USER")
                 .anyRequest().authenticated()
@@ -59,7 +64,7 @@ public class SecurityConfig {
             )
             .formLogin(login -> login
                 .loginPage("/showLogin")
-                .defaultSuccessUrl("/dashboard", true)
+                .defaultSuccessUrl("/goto")
                 .permitAll()
             )
             .logout(logout -> logout.logoutSuccessUrl("/showLogin?logout"));
