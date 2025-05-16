@@ -51,6 +51,9 @@ public class CustomerController {
 		        case "ROLE_DELIVERY":
 		            System.out.println("Redirecting to Moderator Panel...");
 		            return "redirect:/delivery-dashboard";
+		        case "ROLE_ADMIN":
+		            System.out.println("Redirecting to Moderator Panel...");
+		            return "redirect:/admin-dashboard";
 		        default:
 		            System.out.println("Redirecting to Default Dashboard...");
 		            return "redirect:/login";
