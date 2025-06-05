@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { background-color: white; }
+        .navbar { background-color: #d9534f; }
+        .navbar-brand, .nav-link { color: white !important; }
+        .card {
+            border: none; border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 200px;
+        }
+        .footer {
+            background-color: #d9534f; color: white;
+            position: fixed; bottom: 0; width: 100%;
+            text-align: center; padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Foodie Express - Restaurant</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/restro-profile}">
+                            <i class="fas fa-user-circle fa-2x me-1"></i> 
+                        </a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row text-center">
+            <div class="col-12">
+                <h2 class="mb-4">Welcome, <span th:text="${restaurantName}">[Restaurant Name]</span></h2>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h5 class="card-title">New Orders</h5>
+                    <p class="card-text"><span th:text="${pendingOrders}">10</span> Pending Orders</p>
+                    <button class="btn btn-primary w-100" ><a th:href="@{/restro-orders}" style="text-decoration:none; color:white">Manage Orders</a></button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h5 class="card-title">Menu Management</h5>
+                    <p class="card-text">Update & Add Dishes</p>
+                    <button class="btn btn-primary w-100"><a th:href="@{/restro-menu}" style="text-decoration:none; color:white">Manage Menu</a></button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h5 class="card-title">Performance Summary</h5>
+                    <p class="card-text">Orders Completed: <span th:text="${completedOrders}">500</span> | Rating: <span th:text="${rating}">4.7</span>/5</p>
+                    <button class="btn btn-primary w-100" > <a th:href="@{/restro-performance}" style="text-decoration:none; color:white">View Performance</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        © 2025 Foodie Express. All rights reserved.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

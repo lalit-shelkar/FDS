@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-FoodiexpressApplication<foodiexpress>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.fds.foodiexpress.FoodiexpressApplication",
+            "projectName": "foodiexpress",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

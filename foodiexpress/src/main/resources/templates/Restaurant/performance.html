@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Performance</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background-color: #f4f4f4; }
+        .performance-container {
+            max-width: 1100px; margin: auto; padding: 30px;
+            background: #ffffff; border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        .metric-box {
+            background: #ffffff; padding: 20px; border-radius: 12px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+        .metric-box:hover {
+            transform: scale(1.03);
+        }
+        .chart-container {
+            position: relative; height: 250px; width: 100%;
+        }
+        .footer {
+            background-color: #d9534f; color: white;
+            text-align: center; padding: 15px; margin-top: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #d9534f;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="#">Foodie Express - Performance</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="index.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="orders.html">Orders</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="menu.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="performance.html">Performance</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="profile.html">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="logout.html">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="performance-container mt-5">
+        <h2 class="text-center mb-4">Performance Summary</h2>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="metric-box p-3">
+                    <h4>Most Ordered Dish Category 🍽️</h4>
+                    <p>Main Course: <span id="popularCategory" th:text="${mostOrderedDishCategory} ?: 'Chicken Biryani'">Chicken Biryani</span></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="metric-box p-3">
+                    <h4>Top-Rated Dish 🌟</h4>
+                    <p>Best Reviewed: <span id="topDish" th:text="${topRatedDish} ?: 'Paneer Butter Masala (4.9/5)'">Paneer Butter Masala (4.9/5)</span></p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="metric-box p-3">
+                    <h4>Least Ordered Dish ❌</h4>
+                    <p>Low Demand: <span id="leastDish" th:text="${leastOrderedDish} ?: 'Pumpkin Soup'">Pumpkin Soup</span></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="metric-box p-3">
+                    <h4>Average Order Value 💰</h4>
+                    <p>₹<span id="averageOrder" th:text="${#numbers.formatDecimal(averageOrderValue, 0, 0)} ?: '750'">750</span> per order</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="metric-box p-3 chart-container">
+                    <h4>Revenue Breakdown 📊</h4>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="metric-box p-3 chart-container">
+                    <h4>Comparison Over Time 📈</h4>
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="metric-box p-3 chart-container">
+                    <h4>Sales vs. Orders 📉</h4>
+                    <canvas id="salesOrdersChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="metric-box p-3 chart-container">
+                    <h4>Peak Business Hours ⏰</h4>
+                    <canvas id="peakHoursChart"></canvas>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="metric-box p-3">
+                    <h4>Customer Feedback Sentiment 📝</h4>
+                    <ul id="customerReviews">
+                        <li th:each="review : ${customerReviews}"
+                            th:class="${review.sentiment == 'positive' ? 'positive' : 'negative'}"
+                            th:text="${review.text + ' - ' + review.customerName}">
+                            "Loved the food! Amazing taste. ⭐⭐⭐⭐⭐" - Rahul
+                        </li>
+                    </ul>
+                    <p><strong>Overall Sentiment:</strong> <span id="overallSentiment" th:text="${overallSentiment} ?: 'Positive 😊'">Positive 😊</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        © 2025 Foodie Express. All rights reserved.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.onload = function() {
+            // Chart configurations with ORIGINAL HARDCODED DATA, as requested.
+            // Thymeleaf is NOT injecting data into these specific arrays.
+            const chartConfigs = [
+                { id: "revenueChart", type: "bar", labels: ["Starters", "Main Course", "Desserts", "Beverages"], data: [200000, 200000, 35000, 20000], colors: ["#f39c12", "#d9534f", "#3498db", "#2ecc71"] },
+                { id: "comparisonChart", type: "line", labels: ["Jan", "Feb", "Mar", "Apr", "May"], data: [50000, 65000, 72000, 85000, 91000], border: "#d9534f" },
+                { id: "salesOrdersChart", type: "line", labels: ["Jan", "Feb", "Mar", "Apr", "May"], data: [1500, 1650, 1800, 2000, 2200], border: "#28a745" },
+                { id: "peakHoursChart", type: "bar", labels: ["12PM", "3PM", "6PM", "9PM", "12AM"], data: [500, 700, 1500, 1800, 400], colors: ["#007bff"] },
+            ];
+
+            chartConfigs.forEach(config => {
+                const ctx = document.getElementById(config.id);
+                if (ctx) { // Check if canvas element exists
+                    new Chart(ctx.getContext("2d"), {
+                        type: config.type,
+                        data: {
+                            labels: config.labels,
+                            datasets: [{
+                                label: config.id === "revenueChart" ? "Revenue (₹)" :
+                                       config.id === "comparisonChart" ? "Orders" :
+                                       config.id === "salesOrdersChart" ? "Sales" :
+                                       config.id === "peakHoursChart" ? "Orders per Hour" : "",
+                                data: config.data,
+                                backgroundColor: config.colors || (config.type === "bar" ? 'rgba(0, 123, 255, 0.5)' : 'transparent'),
+                                borderColor: config.border || (config.type === "line" ? 'rgba(0, 123, 255, 1)' : 'transparent'),
+                                borderWidth: config.type === "line" ? 2 : 1,
+                                tension: config.type === "line" ? 0.4 : 0,
+                                fill: config.type === "line" ? false : true
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        };
+    </script>
+</body>
+</html>
